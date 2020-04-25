@@ -6,6 +6,7 @@
   "author": "Mako Kusuda",
   "license": "MIT",
   "scripts": {
+    "test": "mocha tests/test.js",
     "dev": "nodemon server/index.js",
     "start": "node server/index.js",
     "migrate": "knex migrate:latest --knexfile models/knexfile.js",
