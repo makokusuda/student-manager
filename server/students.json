@@ -1,0 +1,11 @@
+{
+  "students": [
+    { "id": "1", "name": "Hinata", "grade": "3" },
+    { "id": "2", "name": "Sora", "grade": "3" },
+    { "id": "3", "name": "Hana", "grade": "3" },
+    { "id": "4", "name": "Akari", "grade": "2" },
+    { "id": "5", "name": "Yui", "grade": "2" },
+    { "id": "6", "name": "Akoi", "grade": "1" },
+    { "id": "7", "name": "Kaito", "grade": "1" }
+  ]
+}

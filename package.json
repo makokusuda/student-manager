@@ -1,0 +1,22 @@
+{
+  "name": "student-management-system",
+  "version": "1.0.0",
+  "description": "This is student management system",
+  "main": "index.js",
+  "author": "Mako Kusuda",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon server/index.js",
+    "start": "node server/index.js"
+  },
+  "dependencies": {
+    "chai": "^4.2.0",
+    "express": "^4.17.1",
+    "express-graphql": "^0.9.0",
+    "graphql": "^15.0.0",
+    "mocha": "^7.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
