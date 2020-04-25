@@ -15,6 +15,10 @@ const schema = buildSchema(`
         Student(nameOrId: String): Student
         Grade(grade: Int): [Student]
     }
+
+    type Mutation {
+        DeleteStudent(nameOrId: String): [Student]
+    }
 `);
 
 const root = {
@@ -35,16 +39,22 @@ const root = {
       return student.grade === String(request.grade);
     });
   },
+
+  DeleteStudent: (request) => {
+    students.forEach((student, index) => {
+      if (
+        student.id === request.nameOrId ||
+        student.name === request.nameOrId
+      ) {
+        students.splice(index, 1);
+        return;
+      }
+    });
+    return students;
+  },
 };
 
 const app = express();
-
-// app.use("/graphql", graphqlHTTP({ schema, rootValue: root, graphiql: true }));
-
-// const PORT = process.env.PORT || 4000;
-// app.listen(PORT, () => {
-//   console.log(`Running a GraphQl API server at localhost;${PORT}/graphql`);
-// });
 
 app.use("/graphql", graphqlHTTP({ schema, rootValue: root, graphiql: true }));
 const PORT = process.env.PORT || 5000;
