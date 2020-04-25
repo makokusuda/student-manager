@@ -10,6 +10,11 @@ const schema = buildSchema(`
         grade: Int
     }
 
+    input StudentInput {
+        name: String
+        grade: Int
+    }
+
     type Query {
         Students: [Student]
         Student(nameOrId: String): Student
@@ -18,6 +23,8 @@ const schema = buildSchema(`
 
     type Mutation {
         DeleteStudent(nameOrId: String): [Student]
+        AddStudent(input: StudentInput): [Student]
+        ModifyStudent(id: String, input: StudentInput): [Student]
     }
 `);
 
@@ -50,6 +57,31 @@ const root = {
         return;
       }
     });
+    return students;
+  },
+
+  AddStudent: (input) => {
+    let newStudent = {
+      id: String(students.length + 1),
+      name: input.input.name,
+      grade: input.input.grade,
+    };
+    students.push(newStudent);
+    return students;
+  },
+
+  ModifyStudent: (request) => {
+    students.forEach((student) => {
+      if (student.id === request.id) {
+        if (request.input.name) {
+          student.name = request.input.name;
+        }
+        if (request.input.grade) {
+          student.grade = request.input.grade;
+        }
+      }
+    });
+    console.log(students);
     return students;
   },
 };
