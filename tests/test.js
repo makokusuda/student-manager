@@ -26,38 +26,63 @@ describe("students", () => {
     let params = { name: "" };
 
     context("when bad params are given", () => {
-      before(() => {
-        params = { name: " " };
-      });
-
       it("politely refuses", () =>
         models.students
           .create(params)
           .then(forcePromiseReject)
           .catch((err) => {
-            "Student's name must be provided";
+            expect(err.message).to.equal(
+              "Student name must be provided, and be strings"
+            );
           }));
     });
 
     context("when good params are given", () => {
-      before(() => {
-        params.name = "Shino";
-      });
+      const params = { name: "test3", grade: 3 };
 
-      after(() => knex("students").del());
+      after(() => knex("students").where({ name: params.name }).del());
 
-      it("creates a student", () => {
+      it("creates a student", (done) => {
+        // put done to make sure query is finished before running test
         models.students.create(params).then((student) => {
-          expect(student).to.include({ name: params.name });
+          done();
           expect(student.id).to.be.a("number");
+          expect(student).to.include({ name: params.name });
+          expect(student).to.include({ grade: params.grade });
+          expect(student.grade).to.be.a("number");
         });
       });
     });
   });
-  //add student
+
+  describe("#list", () => {
+    const students = [
+      { name: "test1", grade: 1 },
+      { name: "test2", grade: 2 },
+    ];
+
+    const name = ["test1", "test2"];
+
+    before(() => Promise.all(students.map(models.students.create)));
+    after(() =>
+      Promise.all(
+        students.map((student) =>
+          knex("students").where({ name: student.name }).del()
+        )
+      )
+    );
+
+    it("lists all students", (done) => {
+      models.students.list().then((resp) => {
+        done();
+        expect(name).to.include(resp[0].name);
+        expect(name).to.include(resp[1].name);
+      });
+    });
+  });
+
   //delete student
   //modify student
-  //get students list(all students)
   //search student by id or name
   //search stdent by grade
 });
