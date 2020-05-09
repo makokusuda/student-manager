@@ -4,6 +4,9 @@
   "description": "This is student management system",
   "main": "index.js",
   "author": "Mako Kusuda",
+  "engines": {
+    "node": "14.0.0"
+  },
   "license": "MIT",
   "scripts": {
     "test": "mocha tests/test.js",
