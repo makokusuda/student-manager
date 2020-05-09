@@ -31,8 +31,8 @@ const schema = buildSchema(`
 `);
 
 const root = {
+  //call query to display all students
   Students: async () => {
-    // return students;
     return await models.students.list();
   },
 
@@ -63,14 +63,8 @@ const root = {
     return students;
   },
 
+  //call query to add row to database
   AddStudent: async (request) => {
-    // let newStudent = {
-    //   id: String(students.length + 1),
-    //   name: input.input.name,
-    //   grade: input.input.grade,
-    // };
-    // students.push(newStudent);
-    // return students;
     return await models.students.create({
       name: request.input.name,
       grade: request.input.grade,
