@@ -51,6 +51,9 @@ addButton.addEventListener("click", () => {
     .then((res) => res.json())
     .then((res) => {
       updateDisplayArea.innerHTML = "";
-      console.log(res);
+    })
+    .then(() => {
+      addName.value = "";
+      addGrade.value = "";
     });
 });
