@@ -20,7 +20,7 @@ const displayToPage = (value) => {
 
 //search and display all students
 listButton.addEventListener("click", () => {
-  fetch("http://localhost:3000/graphql", {
+  fetch("/graphql", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -38,7 +38,7 @@ listButton.addEventListener("click", () => {
 
 //search and display filtered students
 filterButton.addEventListener("click", () => {
-  fetch("http://localhost:3000/graphql", {
+  fetch("/graphql", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -88,7 +88,7 @@ addButton.addEventListener("click", () => {
   if (!addName.value || !addGrade.value) {
     console.log("cannot add!");
   } else {
-    fetch("http://localhost:3000/graphql", {
+    fetch("/graphql", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

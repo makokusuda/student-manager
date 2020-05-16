@@ -3,8 +3,12 @@ const config = require("./config");
 const graphqlHTTP = require("express-graphql");
 const graphqlApi = require("./server");
 
+const cors = require("cors");
+
 const express = require("express");
 const app = express();
+
+app.use(cors());
 
 app.use((req, res, next) => {
   res.header();

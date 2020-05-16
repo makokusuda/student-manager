@@ -1,8 +1,8 @@
 const { buildSchema } = require("graphql");
 const { students } = require("./students.json");
 
-const config = require("../config");
-const knex = require("knex")(config.db);
+const connection = require("../models/knexfile");
+const knex = require("knex")(connection);
 const models = require("../models")(knex);
 
 const schema = buildSchema(`
