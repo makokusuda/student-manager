@@ -15,16 +15,12 @@ listButton.addEventListener("click", () => {
     }),
   })
     .then((res) => res.json())
-    .then(
-      (
-        res //console.table(res.data.Students
-      ) => {
-        listDisplayArea.innerHTML = "";
-        res.data.Students.forEach((student) => {
-          displayToPage(student);
-        });
-      }
-    );
+    .then((res) => {
+      listDisplayArea.innerHTML = "";
+      res.data.Students.forEach((student) => {
+        displayToPage(student);
+      });
+    });
 });
 
 const displayToPage = (value) => {
@@ -35,25 +31,29 @@ const displayToPage = (value) => {
 
 //add student
 addButton.addEventListener("click", () => {
-  fetch("http://localhost:3000/graphql", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      query: `mutation{
+  if (!addName.value || !addGrade.value) {
+    console.log("cannot add!");
+  } else {
+    fetch("http://localhost:3000/graphql", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        query: `mutation{
         AddStudent(input: {name: "${addName.value}",
         grade: ${addGrade.value}})
         {
           id name grade
         }
       }`,
-    }),
-  })
-    .then((res) => res.json())
-    .then((res) => {
-      updateDisplayArea.innerHTML = "";
+      }),
     })
-    .then(() => {
-      addName.value = "";
-      addGrade.value = "";
-    });
+      .then((res) => res.json())
+      .then((res) => {
+        updateDisplayArea.innerHTML = "";
+      })
+      .then(() => {
+        addName.value = "";
+        addGrade.value = "";
+      });
+  }
 });
