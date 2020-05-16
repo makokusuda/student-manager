@@ -16,9 +16,43 @@
     </div>
     <div>Add student</div>
     <div>name: <input id="add-name" type="text" /></div>
-    <div>grade: <input id="add-grade" type="text" /></div>
+    <div>
+      grade:
+      <select id="add-grade">
+        <option value="" disabled selected>Grade</option>
+        <option value="1">1st</option>
+        <option value="2">2nd</option>
+        <option value="3">3rd</option>
+      </select>
+    </div>
     <button id="add-button">Add student</button>
     <div id="updated-display-area"></div>
+    <div>
+      <div>id: <input id="filter-id" type="text" /></div>
+      <div>name: <input id="filter-name" type="text" /></div>
+      <div>
+        grade:
+        <input
+          type="checkbox"
+          class="filter-grade"
+          id="filter-grade1"
+          value="1"
+        /><label>1st</label>
+        <input
+          type="checkbox"
+          class="filter-grade"
+          id="filter-grade2"
+          value="2"
+        /><label>2nd</label>
+        <input
+          type="checkbox"
+          class="filter-grade"
+          id="filter-grade3"
+          value="3"
+        /><label>3rd</label>
+      </div>
+      <button id="filter-button" type="button">Filter</button>
+    </div>
     <div>
       <button id="list-button" type="button">Get All Students List</button>
     </div>
