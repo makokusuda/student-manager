@@ -14,20 +14,31 @@
         Github page
       </a>
     </div>
-    <div>Add student</div>
-    <div>name: <input id="add-name" type="text" /></div>
     <div>
-      grade:
-      <select id="add-grade">
-        <option value="" disabled selected>Grade</option>
-        <option value="1">1st</option>
-        <option value="2">2nd</option>
-        <option value="3">3rd</option>
-      </select>
+      Add student
+      <div>name: <input id="add-name" type="text" /></div>
+      <div>
+        grade:
+        <select id="add-grade">
+          <option value="" disabled selected>Grade</option>
+          <option value="1">1st</option>
+          <option value="2">2nd</option>
+          <option value="3">3rd</option>
+        </select>
+      </div>
+      <div id="add-error">
+        error message
+        <button id="error-confirm" type="button">Confirm</button>
+      </div>
+      <button id="add-button">Add student</button>
+      <div>
+        <div id="updated-display-area"></div>
+        <button id="add-confirm" type="button">Confirm</button>
+      </div>
+      <div>
     </div>
-    <button id="add-button">Add student</button>
-    <div id="updated-display-area"></div>
     <div>
+      Filter 
       <div>id: <input id="filter-id" type="text" /></div>
       <div>name: <input id="filter-name" type="text" /></div>
       <div>
@@ -51,7 +62,10 @@
           value="3"
         /><label>3rd</label>
       </div>
-      <button id="filter-button" type="button">Filter</button>
+      <div>
+        <button id="filter-button" type="button">Filter</button>
+        <button id="filter-clear" type="button">Clear</button>
+      </div>
     </div>
     <div>
       <button id="list-button" type="button">Get All Students List</button>
